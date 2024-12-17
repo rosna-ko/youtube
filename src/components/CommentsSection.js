@@ -85,7 +85,19 @@ const CommentsSection = () => {
   }
 
   const Comments = ({ data }) => {
-    const { authorDisplayName, authorProfileImageUrl, textOriginal } = data?.snippet?.topLevelComment?.snippet;
+    console.log(data)
+    const getCommentData = (data) => {
+      if(data?.snippet?.topLevelComment?.snippet) {
+        return data?.snippet?.topLevelComment?.snippet
+      }
+
+      if(data?.snippet) {
+        return data?.snippet
+      }
+
+      return {}
+    }
+    const { authorDisplayName, authorProfileImageUrl, textOriginal } = getCommentData(data);
 
     return (
       <div className="p-2 m-2 flex">
@@ -99,13 +111,13 @@ const CommentsSection = () => {
   };
 
   const CommentsList = ({comments}) => {
-   // console.log(comments)
-    return comments.map((comment,index) => (
+   //console.log(comments)
+    return comments?.map((comment,index) => (
        <div key={index}>
          <Comments  data={comment}/>
-         {/* <div className="pl-5 ml-5 border border-l-black">
-            <CommentsList comments={comment.replies}/>
-         </div> */}
+         <div className="pl-5 ml-5 border border-l-black">
+            <CommentsList comments={comment?.replies?.comments}/>
+         </div>
        </div>
     ))
   }

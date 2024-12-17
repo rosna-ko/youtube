@@ -3,7 +3,7 @@ export const YOUTUBE_LOGO = "https://upload.wikimedia.org/wikipedia/commons/thum
 export const USER_LOGO = "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
 
 export const API_KEY="AIzaSyBSVYTLIO44BPMpXROAQZsuiq4iG0uu6f4"
-export const YOUTUBE_API = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key="+API_KEY
+export const YOUTUBE_API = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&key="+API_KEY
 
 export const YOUTUBE_SEARCH_SUGGESTIONS =
                             "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="

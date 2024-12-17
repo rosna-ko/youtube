@@ -7,7 +7,7 @@ import {
   YOUTUBE_SEARCH_API,
   YOUTUBE_SEARCH_SUGGESTIONS,
 } from "../utils/constants";
-import { toggleMenu } from "../utils/appSlice";
+import { openMenu, toggleMenu } from "../utils/appSlice";
 import { useEffect, useRef, useState } from "react";
 import { cacheResults, searchVideos } from "../utils/searchSlice";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,7 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  //const navigate = useNavigate()
+  const navigate = useNavigate()
   // Ref to detect clicks inside the suggestion box
   const suggestionsRef = useRef(null);
   const searchCache = useSelector((store) => store.search.suggestions);
@@ -77,7 +77,8 @@ const Header = () => {
     const response =await fetch(YOUTUBE_SEARCH_API+value+'&key='+API_KEY);
     const json = await response.json();
     dispatch(searchVideos(json?.items))
-   // navigate("/")
+    navigate("/")
+    dispatch(openMenu())
     setShowSuggestions(false)
     setSearchQuery('')
   }

@@ -21,18 +21,18 @@ const VideoContainer = () => {
   const videoList = searchVideos.length > 0 ? searchVideos : videos;
   //console.log(videoList)
   const normalizeVideoId = (video) => {
-    return video?.id?.videoId || video.id;
+    return video?.id?.videoId || video?.id?.playlistId || video.id;
   };
 
   return (
     <div className="flex flex-wrap">
       {/* {videos[0] && <AdVideoCard info={videos[0]}/>} */}
       {videoList.map((video) => (
-        <Link to={`/watch?v=${normalizeVideoId(video)}`} key={video.id}>
+        <Link to={`/watch?v=${normalizeVideoId(video)}`} key={video.id || video?.etag}>
           {" "}
           <VideoCard
             info={video}
-            thumbNaliClass="w-72"
+            thumbNaliClass="w-72 h-70"
             mainClass="w-72"
             userClass="block"
           />
